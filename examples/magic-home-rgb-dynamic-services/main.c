@@ -59,10 +59,10 @@ void led_strip_send() {
         uint8_t led_2_brightness = led_states[2] ? (led_brightness[2] > 0 ? led_brightness[2] : 100) : 0;
         uint8_t led_3_brightness = led_states[3] ? (led_brightness[3] > 0 ? led_brightness[3] : 100) : 0;
 
-        multipwm_set_duty(&pwm_info, 0, UINT16_MAX - UINT16_MAX * led_0_brightness / 100);
-        multipwm_set_duty(&pwm_info, 1, UINT16_MAX - UINT16_MAX * led_1_brightness / 100);
-        multipwm_set_duty(&pwm_info, 2, UINT16_MAX - UINT16_MAX * led_2_brightness / 100);
-        multipwm_set_duty(&pwm_info, 3, UINT16_MAX - UINT16_MAX * led_3_brightness / 100);
+        multipwm_set_duty(&pwm_info, 0, UINT16_MAX * led_0_brightness / 100);
+        multipwm_set_duty(&pwm_info, 1, UINT16_MAX * led_1_brightness / 100);
+        multipwm_set_duty(&pwm_info, 2, UINT16_MAX * led_2_brightness / 100);
+        multipwm_set_duty(&pwm_info, 3, UINT16_MAX * led_3_brightness / 100);
         multipwm_start(&pwm_info);
         printf ("sending r=%d, g=%d, b=%d, w=%d,\n", led_brightness[0], led_brightness[1], led_brightness[2], led_brightness[3]);
 }
@@ -79,7 +79,7 @@ void lightSET() {
 void led_strip_init() {
         pwm_info.channels = led_count;
         pwm_info.freq = 1000;
-        pwm_info.reverse = true;
+        pwm_info.reverse = false;
 
         multipwm_init(&pwm_info);
 
