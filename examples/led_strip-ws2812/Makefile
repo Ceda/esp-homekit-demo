@@ -19,7 +19,7 @@ EXTRA_CFLAGS += -I../.. -DHOMEKIT_SHORT_APPLE_UUIDS
 include $(SDK_PATH)/common.mk
 include wifi.h
 
-ESPPORT="/dev/tty.wchusbserial1d120"
+# ESPPORT="/dev/tty.wchusbserial1d120"
 LIBS += m
 
 PIXEL_RGB=2
